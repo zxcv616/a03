@@ -3,7 +3,6 @@
 ## How to Run
 
 ```bash
-javac src/*.java
-java -cp src MainApp
+mvn compile exec:java
 ```
 ---
