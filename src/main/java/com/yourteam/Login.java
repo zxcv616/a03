@@ -1,3 +1,4 @@
+package com.yourteam;
 /**
  * Login class for user authentication.
  * Validates username and password credentials.

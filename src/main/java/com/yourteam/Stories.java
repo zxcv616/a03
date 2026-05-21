@@ -1,3 +1,4 @@
+package com.yourteam;
 /**
  * Represents a user story with a subject line, description, attachments, position, value, and assigned user.
  *

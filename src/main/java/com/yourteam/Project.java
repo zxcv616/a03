@@ -1,3 +1,4 @@
+package com.yourteam;
 /**
  * Represents a project with stories, tasks, and sprints.
  * Projects have an ID, name, description, type, and auth type.

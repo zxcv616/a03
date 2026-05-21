@@ -1,3 +1,4 @@
+package com.yourteam;
 /**
  * Panel that displays the product backlog — a list of user stories.
  * Shown on the bottom half of the main dashboard.

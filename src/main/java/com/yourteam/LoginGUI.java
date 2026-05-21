@@ -1,3 +1,4 @@
+package com.yourteam;
 /**
  * GUI for login with username and password fields.
  *

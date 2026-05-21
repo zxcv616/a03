@@ -1,3 +1,4 @@
+package com.yourteam;
 /**
  * Blackboard for organizing tasks into different workflow sections.
  * Sections include: New, In Progress, Ready for Test, Closed, Needs Info.

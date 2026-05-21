@@ -1,3 +1,4 @@
+package com.yourteam;
 import javax.swing.*;
 import java.awt.*;
 
@@ -31,6 +32,7 @@ public class MainApp extends JFrame {
             form.setVisible(true);
         });
         toolbar.add(newProjectBtn);
+        toolbar.add(new com.yourteam.taiga.TaigaLoader().createLoadButton());
 
         JSplitPane splitPane = new JSplitPane(
             JSplitPane.VERTICAL_SPLIT,

@@ -1,3 +1,4 @@
+package com.yourteam;
 import javax.swing.*;
 import java.awt.*;
 

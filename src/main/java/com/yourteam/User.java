@@ -1,3 +1,4 @@
+package com.yourteam;
 /**
  * Represents a user in the system with associated projects.
  * Users have a name, email, and list of projects.

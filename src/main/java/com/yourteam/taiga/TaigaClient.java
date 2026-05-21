@@ -116,7 +116,7 @@ public class TaigaClient {
             String projectName = pair[0];
             int projectId = Integer.parseInt(pair[1]);
 
-            //use the fetch methods to get the important information
+            //use the fetch methods to get the taiga relatedinfo
             JSONObject projectEntry = new JSONObject();
             projectEntry.put("project_name", projectName);
             projectEntry.put("project_id", projectId);
@@ -125,19 +125,22 @@ public class TaigaClient {
             projectEntry.put("sprints", filterSprints(fetchSprints(token, projectId)));
             projectEntry.put("members", filterMembers(fetchMembers(token, projectId)));
 
+            //add it to the json object collection
             outputArray.put(projectEntry);
         }
 
         //write to cleaned_outputs with date as filename
+        //use the date as the key
         java.time.LocalDate date = java.time.LocalDate.now();
         java.io.File outputDir = new java.io.File("src/main/java/com/yourteam/taiga/cleaned_outputs");
         outputDir.mkdirs();
         java.io.FileWriter writer = new java.io.FileWriter("src/main/java/com/yourteam/taiga/cleaned_outputs/" + date + ".json");
         writer.write(outputArray.toString(2));
         writer.close();
-        System.out.println("Saved to src/main/java/com/yourteam/taiga/cleaned_outputs/" + date + ".json");
     }
 
+
+    //generated functions to deal with JSON cleaning
     private JSONArray filterStories(String raw) {
         JSONArray input = new JSONArray(raw);
         JSONArray output = new JSONArray();
@@ -191,6 +194,28 @@ public class TaigaClient {
             output.put(filtered);
         }
         return output;
+    }
+
+    /**
+     * Runs the full scrape — fetches projects, writes raw output,
+     * then cleans and enriches with stories, tasks, sprints, members.
+     * Returns the path to the cleaned output file.
+     */
+    public String scrape(String username, String password) throws Exception {
+        TaigaAuthToken token = authenticateUser(username, password);
+        String projectsJson = fetchProjects(token);
+
+        java.time.LocalDate date = java.time.LocalDate.now();
+        java.io.File outputDir = new java.io.File("src/main/java/com/yourteam/taiga/project_outputs");
+        outputDir.mkdirs();
+        String projectsFile = "src/main/java/com/yourteam/taiga/project_outputs/" + date + ".json";
+        java.io.FileWriter writer = new java.io.FileWriter(projectsFile);
+        writer.write(projectsJson);
+        writer.close();
+
+        cleanJsonOutput(projectsFile, token);
+
+        return "src/main/java/com/yourteam/taiga/cleaned_outputs/" + date + ".json";
     }
 
     //Hardcoding credentials at this point
