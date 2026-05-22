@@ -1,56 +1,100 @@
 package com.yourteam;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
- * Blackboard for organizing tasks into different workflow sections.
- * Sections include: New, In Progress, Ready for Test, Closed, Needs Info.
+ * Blackboard-style shared data repository for projects.
+ * Implemented as a singleton so all parts of the application share one instance.
+ * Observers registered here are notified automatically whenever a project is added.
  *
- * @author Ivan Torriani
+ * @author Matthew Wiecking
  * @version 1.0
  */
-
-import java.util.Map;
-import java.util.List;
-import java.util.HashMap;
-import java.util.ArrayList;
-
 public class Blackboard {
 
-    //create hashmap of different sections
-    private Map<String, List<Task>> taskBoardSections = new HashMap<>();
+    private static Blackboard instance;
 
-    public Blackboard() {
+    private final List<Project> projects = new ArrayList<>();
+    private final List<Stories> stories = new ArrayList<>();
+    private final Map<Integer, Sprints> sprints = new HashMap<>();
+    private final List<ProjectObserver> observers = new ArrayList<>();
 
-        //Initialize the taskboard with these sections
-        taskBoardSections.put("New", new ArrayList<>());
+    private Blackboard() {}
 
-        taskBoardSections.put("In Progress", new ArrayList<>());
-
-        taskBoardSections.put("Ready for Test", new ArrayList<>());
-
-        taskBoardSections.put("Closed", new ArrayList<>());
-
-        taskBoardSections.put("Needs Info", new ArrayList<>());
+    /**
+     * Returns the single shared instance of this repository.
+     *
+     * @return the Blackboard singleton
+     */
+    public static Blackboard getInstance() {
+        if (instance == null) {
+            instance = new Blackboard();
+        }
+        return instance;
     }
 
-    public void addNewTask(String taskName, String userAssignment, int taskValue)
-    {
-        /*
-        Description: Create a new task and add it to the new task section to start with
-        */
-        Task newTask = new Task(taskName, userAssignment, taskValue); //create a new task
-
-        taskBoardSections.get("New").add(newTask); //add new task to task section
+    /**
+     * Adds a project to the repository and notifies all registered observers.
+     *
+     * @param project the project to add
+     */
+    public void addProject(Project project) {
+        projects.add(project);
+        notifyObservers(project);
     }
 
-    public void reorganizeTask(String oldSection, String newSection)
-    {
-        /*
-        Description: Primitive functionality to move a task from the old 
-        section to the new section. Primitive because I'm only moving the first element
-        from that old section to a new section. 
-        */
+    public List<Project> getProjects() {
+        return Collections.unmodifiableList(projects);
+    }
 
-        Task taskToMove = taskBoardSections.get(oldSection).get(0); // get the first element
+    public Project getProjectById(int id) {
+        for (Project p : projects) {
+            if (p.getId() == id) return p;
+        }
+        return null;
+    }
 
-        taskBoardSections.get(newSection).add(taskToMove); // add task
+    public void addStory(Stories story) {
+        stories.add(story);
+    }
+
+    public List<Stories> getStories() {
+        return Collections.unmodifiableList(stories);
+    }
+
+    public void addSprint(Sprints sprint) {
+        sprints.put(sprint.getId(), sprint);
+    }
+
+    public Sprints getSprintById(int id) {
+        return sprints.get(id);
+    }
+
+    /**
+     * Registers an observer to be notified on project additions.
+     *
+     * @param observer the observer to add
+     */
+    public void addObserver(ProjectObserver observer) {
+        observers.add(observer);
+    }
+
+    /**
+     * Removes a previously registered observer.
+     *
+     * @param observer the observer to remove
+     */
+    public void removeObserver(ProjectObserver observer) {
+        observers.remove(observer);
+    }
+
+    private void notifyObservers(Project project) {
+        for (ProjectObserver observer : observers) {
+            observer.onProjectAdded(project);
+        }
     }
 }

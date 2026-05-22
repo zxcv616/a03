@@ -97,7 +97,7 @@ public class CreateSprintsGUI extends JFrame {
 
         // Save to project and repository
         project.addUserSprint(sprint);
-        ProjectRepository.getInstance().addSprint(sprint);
+        Blackboard.getInstance().addSprint(sprint);
 
         // Update the sprint table in ProjectDetailFrame
         sprintTableModel.addRow(new Object[]{

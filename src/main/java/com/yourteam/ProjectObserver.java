@@ -1,7 +1,7 @@
 package com.yourteam;
 /**
  * Observer interface for receiving notifications when a project is added
- * to the ProjectRepository (Blackboard).
+ * to the Blackboard (Blackboard).
  *
  * @author Matthew Wiecking
  * @version 1.0
@@ -9,7 +9,7 @@ package com.yourteam;
 public interface ProjectObserver {
 
     /**
-     * Called by ProjectRepository whenever a new project is added.
+     * Called by Blackboard whenever a new project is added.
      *
      * @param project the newly added project
      */

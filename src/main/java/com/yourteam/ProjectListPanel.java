@@ -40,7 +40,7 @@ public class ProjectListPanel extends JPanel implements ProjectObserver {
                     int row = table.getSelectedRow();
                     if (row == -1) return;
                     int projectId = (int) tableModel.getValueAt(row, 0);
-                    Project project = ProjectRepository.getInstance().getProjectById(projectId);
+                    Project project = Blackboard.getInstance().getProjectById(projectId);
                     if (project != null) {
                         new ProjectDetailFrame(project).setVisible(true);
                     }
@@ -50,8 +50,8 @@ public class ProjectListPanel extends JPanel implements ProjectObserver {
 
         add(new JScrollPane(table), BorderLayout.CENTER);
 
-        ProjectRepository.getInstance().addObserver(this);
-        for (Project p : ProjectRepository.getInstance().getProjects()) {
+        Blackboard.getInstance().addObserver(this);
+        for (Project p : Blackboard.getInstance().getProjects()) {
             addRow(p);
         }
     }

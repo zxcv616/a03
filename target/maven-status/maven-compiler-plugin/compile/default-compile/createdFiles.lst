@@ -11,7 +11,6 @@ com/yourteam/MainApp.class
 com/yourteam/ProjectListPanel$2.class
 com/yourteam/Task.class
 com/yourteam/ProjectObserver.class
-com/yourteam/ProjectRepository.class
 com/yourteam/taiga/TaigaLoader.class
 com/yourteam/LoginGUI.class
 com/yourteam/User.class

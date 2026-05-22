@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * GUI form for creating a new project.
  * Collects project name, description, type, and auth type from the user,
- * then constructs a Project object. Will connect to ProjectRepository
+ * then constructs a Project object. Will connect to Blackboard
  * (Blackboard) in Task 2.
  *
  * @author Matthew Wiecking
@@ -82,7 +82,7 @@ public class CreateProjectGUI extends JFrame {
 
         Project project = new Project(nextId++, name, description, projType, authType);
 
-        ProjectRepository.getInstance().addProject(project);
+        Blackboard.getInstance().addProject(project);
 
         outputArea.setText(
             "Project Created Successfully!\n" +

@@ -88,7 +88,7 @@ public class BacklogPanel extends JPanel {
             );
             //add story to the list of stories
             storyList.add(story);
-            ProjectRepository.getInstance().addStory(story);
+            Blackboard.getInstance().addStory(story);
             
             //add it to the table
             tableModel.addRow(new Object[]{

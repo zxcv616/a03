@@ -75,7 +75,7 @@ public class ProjectDetailFrame extends JFrame {
                     int sprintId = (int) sprintTableModel.getValueAt(row, 0);
 
                     //debugging
-                    Sprints sprint = ProjectRepository.getInstance().getSprintById(sprintId);
+                    Sprints sprint = Blackboard.getInstance().getSprintById(sprintId);
                     if (sprint != null) openSprintDetail(sprint);
                 }
             }
@@ -197,7 +197,7 @@ public class ProjectDetailFrame extends JFrame {
             //add 
             story.setTasks(taskList);
             project.addUserStory(story);
-            ProjectRepository.getInstance().addStory(story);
+            Blackboard.getInstance().addStory(story);
             addStoryRow(story);
             dialog.dispose();
         });

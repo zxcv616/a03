@@ -5,7 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import com.yourteam.ProjectRepository;
+import com.yourteam.Blackboard;
 import com.yourteam.Project;
 import com.yourteam.Stories;
 import com.yourteam.Sprints;
@@ -50,7 +50,7 @@ public class TaigaLoader {
     public void translateTaiga(String jsonUrl) throws Exception
     {
         //access the project repo singleton containing all values
-        ProjectRepository repo = ProjectRepository.getInstance();
+        Blackboard repo = Blackboard.getInstance();
 
         // set up iteration of JSON file
         String content = new String(Files.readAllBytes(Paths.get(jsonUrl)));
