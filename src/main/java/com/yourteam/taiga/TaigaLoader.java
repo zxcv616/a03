@@ -72,7 +72,6 @@ public class TaigaLoader {
                 JSONObject story = stories.getJSONObject(j);
 
                 String storySubject    = story.optString("subject");
-                String storyStatus     = story.optString("status");
                 Object storyAssignedTo = story.isNull("assigned_to") ? null : story.get("assigned_to");
                 Object storyPoints     = story.isNull("points") ? null : story.get("points");
 
@@ -110,13 +109,9 @@ public class TaigaLoader {
                 repo.addSprint(sprintObject);
             }
 
-            // iterate through members (not really used at this moment)
             JSONArray members = projectJson.getJSONArray("members");
             for (int j = 0; j < members.length(); j++) {
-                JSONObject member = members.getJSONObject(j);
-
-                String memberUsername = member.optString("username");
-                String memberFullName = member.optString("full_name");
+                members.getJSONObject(j);
             }
         }
     }

@@ -12,7 +12,7 @@ public class Stories {
 
     private String subjectLine;
     private String description;
-    private LinkedList<String> attatchments = new LinkedList<>();
+    private LinkedList<String> attachments = new LinkedList<>();
     private LinkedList<String> tasks = new LinkedList<>();
     private boolean position;
     private int value;
@@ -25,7 +25,7 @@ public class Stories {
         this.description = description;
         this.value = value;
         this.assignedUser = assignedUser;
-        this.attatchments = new LinkedList<>();
+        this.attachments = new LinkedList<>();
         this.position = false;
     }
 
@@ -44,8 +44,8 @@ public class Stories {
         this.position = newPosition;
     }
 
-    public void setAttatchments(LinkedList<String> newAttatchments) {
-        this.attatchments = newAttatchments;
+    public void setAttachments(LinkedList<String> newAttachments) {
+        this.attachments = newAttachments;
     }
 
     public void setValue(int value) {
@@ -68,8 +68,8 @@ public class Stories {
     }
 
 
-    public LinkedList<String> getAttatchments() {
-        return attatchments;
+    public LinkedList<String> getAttachments() {
+        return attachments;
     }
 
 

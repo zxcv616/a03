@@ -22,9 +22,8 @@ import java.util.List;
  */
 public class TaigaClient {
 
-    //variables for url
-    private String baseUrl;
-    private OkHttpClient httpClient;
+    private final String baseUrl;
+    private final OkHttpClient httpClient;
 
     //constructor
     public TaigaClient(String baseUrl) {
@@ -33,13 +32,13 @@ public class TaigaClient {
     }
 
     public TaigaAuthToken authenticateUser(String username, String password) throws IOException {
-        //create the full url and json
-        String fullUrl = baseUrl + "/api/v1/auth";
-        String json = "{\"username\":\"" + username + "\",\"password\":\"" + password + "\",\"type\":\"normal\"}";
+        JSONObject credentials = new JSONObject();
+        credentials.put("username", username);
+        credentials.put("password", password);
+        credentials.put("type", "normal");
 
-        //api setup
-        RequestBody body = RequestBody.create(json, MediaType.get("application/json"));
-        Request request = new Request.Builder().url(fullUrl).post(body).build();
+        RequestBody body = RequestBody.create(credentials.toString(), MediaType.get("application/json"));
+        Request request = new Request.Builder().url(baseUrl + "/api/v1/auth").post(body).build();
 
         try (Response response = httpClient.newCall(request).execute()) {
             JSONObject responseJson = new JSONObject(response.body().string());
@@ -134,9 +133,10 @@ public class TaigaClient {
         java.time.LocalDate date = java.time.LocalDate.now();
         java.io.File outputDir = new java.io.File("src/main/java/com/yourteam/taiga/cleaned_outputs");
         outputDir.mkdirs();
-        java.io.FileWriter writer = new java.io.FileWriter("src/main/java/com/yourteam/taiga/cleaned_outputs/" + date + ".json");
-        writer.write(outputArray.toString(2));
-        writer.close();
+        try (java.io.FileWriter writer = new java.io.FileWriter(
+                "src/main/java/com/yourteam/taiga/cleaned_outputs/" + date + ".json")) {
+            writer.write(outputArray.toString(2));
+        }
     }
 
 
@@ -209,9 +209,9 @@ public class TaigaClient {
         java.io.File outputDir = new java.io.File("src/main/java/com/yourteam/taiga/project_outputs");
         outputDir.mkdirs();
         String projectsFile = "src/main/java/com/yourteam/taiga/project_outputs/" + date + ".json";
-        java.io.FileWriter writer = new java.io.FileWriter(projectsFile);
-        writer.write(projectsJson);
-        writer.close();
+        try (java.io.FileWriter writer = new java.io.FileWriter(projectsFile)) {
+            writer.write(projectsJson);
+        }
 
         cleanJsonOutput(projectsFile, token);
 
