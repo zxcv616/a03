@@ -1,5 +1,7 @@
 package com.yourteam;
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
@@ -33,7 +35,7 @@ public class CreateSprintsGUI extends JFrame {
         this.sprintTableModel = sprintTableModel;
 
         setTitle("New Sprint for: " + project.getName());
-        setSize(500, 560);
+        setSize(950, 560);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -71,7 +73,28 @@ public class CreateSprintsGUI extends JFrame {
 
         createButton.addActionListener(e -> handleCreateSprint());
 
-        mainPanel.add(inputPanel, BorderLayout.CENTER);
+        // Groq panel beside the form — updates live as the user types
+        com.yourteam.groq.GroqPanel groqPanel = new com.yourteam.groq.GroqPanel();
+
+        DocumentListener liveUpdate = new DocumentListener() {
+            private void update() {
+                groqPanel.setStoryText(
+                    "Sprint: "      + nameField.getText() + "\n" +
+                    "Description: " + descriptionArea.getText()
+                );
+            }
+            public void insertUpdate(DocumentEvent e)  { update(); }
+            public void removeUpdate(DocumentEvent e)  { update(); }
+            public void changedUpdate(DocumentEvent e) { update(); }
+        };
+        nameField.getDocument().addDocumentListener(liveUpdate);
+        descriptionArea.getDocument().addDocumentListener(liveUpdate);
+
+        JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, inputPanel, groqPanel);
+        split.setResizeWeight(0.45);
+        split.setDividerLocation(420);
+
+        mainPanel.add(split, BorderLayout.CENTER);
         add(mainPanel);
     }
 

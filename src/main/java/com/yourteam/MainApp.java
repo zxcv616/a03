@@ -37,7 +37,7 @@ public class MainApp extends JFrame {
         JSplitPane splitPane = new JSplitPane(
             JSplitPane.VERTICAL_SPLIT,
             new ProjectListPanel(),
-            new JPanel() // placeholder bottom panel — content lives inside project detail now
+            new com.yourteam.groq.GroqPanel()
         );
         splitPane.setResizeWeight(0.6);
         splitPane.setDividerLocation(300);

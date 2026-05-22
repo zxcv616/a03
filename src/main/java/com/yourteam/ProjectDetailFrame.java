@@ -1,5 +1,7 @@
 package com.yourteam;
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -21,6 +23,7 @@ public class ProjectDetailFrame extends JFrame {
     //create tables for sprints and stories
     private DefaultTableModel sprintTableModel;
     private DefaultTableModel storyTableModel;
+    private JTable storyTable;
 
     public ProjectDetailFrame(Project project) {
         //refer to project instance
@@ -35,7 +38,6 @@ public class ProjectDetailFrame extends JFrame {
         setLocationRelativeTo(null);
 
 
-        //debugging formatting errors
         JPanel root = new JPanel(new BorderLayout(10, 10));
         root.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
@@ -65,16 +67,11 @@ public class ProjectDetailFrame extends JFrame {
 
         // Double-click a sprint to see its stories
         sprintTable.addMouseListener(new MouseAdapter() {
-            @Override //debug overide
+            @Override
             public void mouseClicked(MouseEvent e) {
-                //for when there are two clicks
                 if (e.getClickCount() == 2) {
-                    //get the row
                     int row = sprintTable.getSelectedRow();
-                    //get sprint id
                     int sprintId = (int) sprintTableModel.getValueAt(row, 0);
-
-                    //debugging
                     Sprints sprint = Blackboard.getInstance().getSprintById(sprintId);
                     if (sprint != null) openSprintDetail(sprint);
                 }
@@ -103,13 +100,20 @@ public class ProjectDetailFrame extends JFrame {
         storyTableModel = new DefaultTableModel(storyCols, 0) {
             @Override public boolean isCellEditable(int r, int c) { return false; }
         };
-        JTable storyTable = new JTable(storyTableModel);
+        storyTable = new JTable(storyTableModel);
         storyTable.setFillsViewportHeight(true);
         storyPanel.add(new JScrollPane(storyTable), BorderLayout.CENTER);
 
         JButton addStoryBtn = new JButton("+ New Story");
         addStoryBtn.addActionListener(e -> openNewStoryDialog());
-        storyPanel.add(addStoryBtn, BorderLayout.SOUTH);
+
+        JButton aiReviewBtn = new JButton("AI Review");
+        aiReviewBtn.addActionListener(e -> openAIReview());
+
+        JPanel storyBtnRow = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        storyBtnRow.add(addStoryBtn);
+        storyBtnRow.add(aiReviewBtn);
+        storyPanel.add(storyBtnRow, BorderLayout.SOUTH);
 
         // Populate from the project's existing data
         for (Sprints s : project.getSprint()) {
@@ -128,7 +132,22 @@ public class ProjectDetailFrame extends JFrame {
         add(root);
     }
 
-    
+    private void openAIReview() {
+        int row = storyTable.getSelectedRow();
+        com.yourteam.groq.GroqPanel panel = new com.yourteam.groq.GroqPanel();
+
+        if (row != -1 && row < project.getStory().size()) {
+            panel.setStory(project.getStory().get(row));
+        }
+
+        JFrame frame = new JFrame("AI Review — " + project.getName());
+        frame.setSize(600, 500);
+        frame.setLocationRelativeTo(this);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.add(panel);
+        frame.setVisible(true);
+    }
+
     private void openSprintDetail(Sprints sprint) {
         /*
         Functionality to open sprint related information
@@ -163,38 +182,60 @@ public class ProjectDetailFrame extends JFrame {
         detail.setVisible(true);
     }
 
-    /** Inline dialog to add a story directly to this project's backlog. */
+    /** Inline dialog to add a story, with a live Groq AI panel alongside the form. */
     private void openNewStoryDialog() {
         JDialog dialog = new JDialog(this, "New Story", true);
-        dialog.setLayout(new GridLayout(0, 2, 5, 5));
-        dialog.setSize(400, 300);
+        dialog.setLayout(new BorderLayout(10, 10));
+        dialog.setSize(820, 360);
         dialog.setLocationRelativeTo(this);
 
-        dialog.add(new JLabel("Name:")); JTextField f1 = new JTextField(); dialog.add(f1);
-        dialog.add(new JLabel("Description:")); JTextField f2 = new JTextField(); dialog.add(f2);
-        dialog.add(new JLabel("Value:")); JTextField f3 = new JTextField(); dialog.add(f3);
-        dialog.add(new JLabel("User Assignment:")); JTextField f4 = new JTextField(); dialog.add(f4);
-        dialog.add(new JLabel("Tasks (comma-separated):")); JTextField f5 = new JTextField(); dialog.add(f5);
+        // Story creation form
+        JPanel formPanel = new JPanel(new GridLayout(0, 2, 5, 5));
+        formPanel.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
+
+        formPanel.add(new JLabel("Name:")); JTextField f1 = new JTextField(); formPanel.add(f1);
+        formPanel.add(new JLabel("Description:")); JTextField f2 = new JTextField(); formPanel.add(f2);
+        formPanel.add(new JLabel("Value:")); JTextField f3 = new JTextField(); formPanel.add(f3);
+        formPanel.add(new JLabel("User Assignment:")); JTextField f4 = new JTextField(); formPanel.add(f4);
+        formPanel.add(new JLabel("Tasks (comma-separated):")); JTextField f5 = new JTextField(); formPanel.add(f5);
 
         JButton add = new JButton("Add Story");
-        dialog.add(new JLabel());
-        dialog.add(add);
+        formPanel.add(new JLabel());
+        formPanel.add(add);
+
+        // Groq panel beside the form — updates live as the user types
+        com.yourteam.groq.GroqPanel groqPanel = new com.yourteam.groq.GroqPanel();
+
+        DocumentListener liveUpdate = new DocumentListener() {
+            private void update() {
+                groqPanel.setStoryText(
+                    "Title: "       + f1.getText() + "\n" +
+                    "Description: " + f2.getText() + "\n" +
+                    "Value: "       + f3.getText() + "\n" +
+                    "Assigned To: " + f4.getText()
+                );
+            }
+            public void insertUpdate(DocumentEvent e)  { update(); }
+            public void removeUpdate(DocumentEvent e)  { update(); }
+            public void changedUpdate(DocumentEvent e) { update(); }
+        };
+        f1.getDocument().addDocumentListener(liveUpdate);
+        f2.getDocument().addDocumentListener(liveUpdate);
+        f3.getDocument().addDocumentListener(liveUpdate);
+        f4.getDocument().addDocumentListener(liveUpdate);
+
+        JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, formPanel, groqPanel);
+        split.setResizeWeight(0.4);
+        split.setDividerLocation(330);
 
         add.addActionListener(e -> {
             Stories story = new Stories(f1.getText(), f2.getText(),
                     Integer.parseInt(f3.getText()), f4.getText());
-          
-           //get tasks by comma seperated values
             LinkedList<String> taskList = new LinkedList<>();
-            
-            //iterate through the string
             for (String t : f5.getText().split(",")) {
-                //debug trim
                 String trimmed = t.trim();
-                //add totaskList
                 if (!trimmed.isEmpty()) taskList.add(trimmed);
             }
-            //add 
             story.setTasks(taskList);
             project.addUserStory(story);
             Blackboard.getInstance().addStory(story);
@@ -202,6 +243,7 @@ public class ProjectDetailFrame extends JFrame {
             dialog.dispose();
         });
 
+        dialog.add(split, BorderLayout.CENTER);
         dialog.setVisible(true);
     }
 
