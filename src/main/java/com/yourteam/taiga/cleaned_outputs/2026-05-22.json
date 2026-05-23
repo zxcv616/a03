@@ -3,180 +3,210 @@
     "stories": [
       {
         "subject": "project dashboard UI",
+        "milestone_name": null,
         "status": "10841823",
         "assigned_to": null,
         "points": 3
       },
       {
         "subject": "User logout",
+        "milestone_name": null,
         "status": "10841823",
         "assigned_to": null,
         "points": 1
       },
       {
         "subject": "Main App GUI",
+        "milestone_name": "Sprint 2",
         "status": "10841823",
         "assigned_to": null,
         "points": 3
       },
       {
         "subject": "User login",
+        "milestone_name": null,
         "status": "10841823",
         "assigned_to": null,
         "points": 2
       },
       {
         "subject": "Create Sprints",
+        "milestone_name": "Sprint 2",
         "status": "10841823",
         "assigned_to": null,
         "points": 3
       },
       {
         "subject": "User registration",
+        "milestone_name": null,
         "status": "10841823",
         "assigned_to": null,
         "points": 3
       },
       {
         "subject": "Delete project",
+        "milestone_name": null,
         "status": "10841823",
         "assigned_to": null,
         "points": 2
       },
       {
         "subject": "Project Search Option",
+        "milestone_name": null,
         "status": "10841823",
         "assigned_to": null,
         "points": 3
       },
       {
         "subject": "Invite members",
+        "milestone_name": null,
         "status": "10841823",
         "assigned_to": null,
         "points": 5
       },
       {
         "subject": "Project Selection",
+        "milestone_name": null,
         "status": "10841823",
         "assigned_to": null,
         "points": 3
       },
       {
         "subject": "ProjectRepository",
+        "milestone_name": "Sprint 2",
         "status": "10841823",
         "assigned_to": null,
         "points": 26
       },
       {
         "subject": "Password reset",
+        "milestone_name": null,
         "status": "10841823",
         "assigned_to": null,
         "points": 3
       },
       {
         "subject": "Team Management Tab",
+        "milestone_name": null,
         "status": "10841823",
         "assigned_to": null,
         "points": 5
       },
       {
         "subject": "Project Team Messaging",
+        "milestone_name": null,
         "status": "10841823",
         "assigned_to": null,
         "points": 4
       },
       {
         "subject": "User Email Settings",
+        "milestone_name": null,
         "status": "10841823",
         "assigned_to": null,
         "points": 3
       },
       {
         "subject": "Paid Plan Management",
+        "milestone_name": null,
         "status": "10841823",
         "assigned_to": null,
         "points": 5
       },
       {
         "subject": "Create Stories",
+        "milestone_name": "Sprint 2",
         "status": "10841823",
         "assigned_to": null,
         "points": null
       },
       {
         "subject": "Help Tab",
+        "milestone_name": null,
         "status": "10841823",
         "assigned_to": null,
         "points": 3
       },
       {
         "subject": "User Events Tab",
+        "milestone_name": null,
         "status": "10841823",
         "assigned_to": null,
         "points": 3
       },
       {
         "subject": "Sprint Creation",
+        "milestone_name": null,
         "status": "10841823",
         "assigned_to": null,
         "points": null
       },
       {
         "subject": "Track Issues",
+        "milestone_name": null,
         "status": "10841823",
         "assigned_to": null,
         "points": null
       },
       {
         "subject": "Create Blackboard",
+        "milestone_name": "Sprint 2",
         "status": "10841827",
         "assigned_to": null,
         "points": 40
       },
       {
         "subject": "Loading Existing TAIGA Information",
+        "milestone_name": "Sprint 3",
         "status": "10841823",
         "assigned_to": 925139,
         "points": 40
       },
       {
         "subject": "SCRUM Progress Bar",
+        "milestone_name": null,
         "status": "10841823",
         "assigned_to": null,
         "points": null
       },
       {
         "subject": "Project Dashboard",
+        "milestone_name": null,
         "status": "10841823",
         "assigned_to": null,
         "points": null
       },
       {
         "subject": "Assigning Values to Stories",
+        "milestone_name": null,
         "status": "10841823",
         "assigned_to": null,
         "points": null
       },
       {
         "subject": "Kanban Project User Story Tabs",
+        "milestone_name": null,
         "status": "10841823",
         "assigned_to": null,
         "points": null
       },
       {
         "subject": "User Profile Customization",
+        "milestone_name": null,
         "status": "10841823",
         "assigned_to": null,
         "points": null
       },
       {
         "subject": "Events/Notifications Tab",
+        "milestone_name": null,
         "status": "10841823",
         "assigned_to": null,
         "points": 5
       },
       {
         "subject": "Sprint Backlog Filter",
+        "milestone_name": null,
         "status": "10841823",
         "assigned_to": null,
         "points": 4
@@ -349,6 +379,7 @@
   {
     "stories": [{
       "subject": "Test Story",
+      "milestone_name": null,
       "status": "10824924",
       "assigned_to": null,
       "points": 40

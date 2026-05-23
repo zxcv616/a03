@@ -147,10 +147,11 @@ public class TaigaClient {
         for (int i = 0; i < input.length(); i++) {
             JSONObject s = input.getJSONObject(i);
             JSONObject filtered = new JSONObject();
-            filtered.put("subject",     s.optString("subject"));
-            filtered.put("status",      s.optString("status"));
-            filtered.put("assigned_to", s.isNull("assigned_to") ? JSONObject.NULL : s.get("assigned_to"));
-            filtered.put("points",      s.isNull("total_points") ? JSONObject.NULL : s.get("total_points"));
+            filtered.put("subject",        s.optString("subject"));
+            filtered.put("status",         s.optString("status"));
+            filtered.put("assigned_to",    s.isNull("assigned_to") ? JSONObject.NULL : s.get("assigned_to"));
+            filtered.put("points",         s.isNull("total_points") ? JSONObject.NULL : s.get("total_points"));
+            filtered.put("milestone_name", s.isNull("milestone_name") ? JSONObject.NULL : s.optString("milestone_name"));
             output.put(filtered);
         }
         return output;
