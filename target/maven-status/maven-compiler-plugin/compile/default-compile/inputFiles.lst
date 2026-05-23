@@ -11,9 +11,10 @@
 /Users/ivantorriani/Documents/Chapter-III-2026/courses/Courses/CSC307/a03/src/main/java/com/yourteam/ProjectObserver.java
 /Users/ivantorriani/Documents/Chapter-III-2026/courses/Courses/CSC307/a03/src/main/java/com/yourteam/Sprints.java
 /Users/ivantorriani/Documents/Chapter-III-2026/courses/Courses/CSC307/a03/src/main/java/com/yourteam/Stories.java
-/Users/ivantorriani/Documents/Chapter-III-2026/courses/Courses/CSC307/a03/src/main/java/com/yourteam/StoryRepository.java
 /Users/ivantorriani/Documents/Chapter-III-2026/courses/Courses/CSC307/a03/src/main/java/com/yourteam/Task.java
 /Users/ivantorriani/Documents/Chapter-III-2026/courses/Courses/CSC307/a03/src/main/java/com/yourteam/User.java
+/Users/ivantorriani/Documents/Chapter-III-2026/courses/Courses/CSC307/a03/src/main/java/com/yourteam/groq/GroqClient.java
+/Users/ivantorriani/Documents/Chapter-III-2026/courses/Courses/CSC307/a03/src/main/java/com/yourteam/groq/GroqPanel.java
 /Users/ivantorriani/Documents/Chapter-III-2026/courses/Courses/CSC307/a03/src/main/java/com/yourteam/taiga/TaigaAuthToken.java
 /Users/ivantorriani/Documents/Chapter-III-2026/courses/Courses/CSC307/a03/src/main/java/com/yourteam/taiga/TaigaClient.java
 /Users/ivantorriani/Documents/Chapter-III-2026/courses/Courses/CSC307/a03/src/main/java/com/yourteam/taiga/TaigaLoader.java

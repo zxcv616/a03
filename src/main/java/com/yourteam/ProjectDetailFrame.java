@@ -149,35 +149,47 @@ public class ProjectDetailFrame extends JFrame {
     }
 
     private void openSprintDetail(Sprints sprint) {
-        /*
-        Functionality to open sprint related information
-        */
-
-        //title sprint detail based on name
         JFrame detail = new JFrame("Sprint: " + sprint.getName());
-
-        //formatting
-        detail.setSize(450, 350);
+        detail.setSize(700, 400);
         detail.setLocationRelativeTo(this);
         detail.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        //create new panel 
         JPanel panel = new JPanel(new BorderLayout(10, 10));
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         panel.add(new JLabel("Stories in \"" + sprint.getName() + "\":"), BorderLayout.NORTH);
 
-        //format based on story characteristics
-        String[] cols = {"Name", "Description", "Value", "Assigned To"};
+        String[] cols = {"Name", "Assigned To", "New", "In Progress", "Ready for Testing", "Complete"};
         DefaultTableModel model = new DefaultTableModel(cols, 0) {
             @Override public boolean isCellEditable(int r, int c) { return false; }
         };
         for (Stories s : sprint.getStory()) {
-            model.addRow(new Object[]{s.getSubjectLine(), s.getDescription(), s.getValue(), s.getAssignedUser()});
+            model.addRow(new Object[]{
+                s.getSubjectLine(),
+                s.getAssignedUser(),
+                "☐", "☐", "☐", "☐"
+            });
         }
         JTable t = new JTable(model);
         t.setFillsViewportHeight(true);
-        panel.add(new JScrollPane(t), BorderLayout.CENTER);
+        t.setRowHeight(24);
 
+        // clicking a status column toggles the checkbox for that row
+        t.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int row = t.rowAtPoint(e.getPoint());
+                int col = t.columnAtPoint(e.getPoint());
+                if (col >= 2 && col <= 5) {
+                    // clear all status columns for this row, then check the clicked one
+                    for (int c = 2; c <= 5; c++) {
+                        model.setValueAt("☐", row, c);
+                    }
+                    model.setValueAt("☑", row, col);
+                }
+            }
+        });
+
+        panel.add(new JScrollPane(t), BorderLayout.CENTER);
         detail.add(panel);
         detail.setVisible(true);
     }

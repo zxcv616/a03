@@ -1,0 +1,369 @@
+[
+  {
+    "stories": [
+      {
+        "subject": "project dashboard UI",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": 3
+      },
+      {
+        "subject": "User logout",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": 1
+      },
+      {
+        "subject": "Main App GUI",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": 3
+      },
+      {
+        "subject": "User login",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": 2
+      },
+      {
+        "subject": "Create Sprints",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": 3
+      },
+      {
+        "subject": "User registration",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": 3
+      },
+      {
+        "subject": "Delete project",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": 2
+      },
+      {
+        "subject": "Project Search Option",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": 3
+      },
+      {
+        "subject": "Invite members",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": 5
+      },
+      {
+        "subject": "Project Selection",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": 3
+      },
+      {
+        "subject": "ProjectRepository",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": 26
+      },
+      {
+        "subject": "Password reset",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": 3
+      },
+      {
+        "subject": "Team Management Tab",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": 5
+      },
+      {
+        "subject": "Project Team Messaging",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": 4
+      },
+      {
+        "subject": "User Email Settings",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": 3
+      },
+      {
+        "subject": "Paid Plan Management",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": 5
+      },
+      {
+        "subject": "Create Stories",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": null
+      },
+      {
+        "subject": "Help Tab",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": 3
+      },
+      {
+        "subject": "User Events Tab",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": 3
+      },
+      {
+        "subject": "Sprint Creation",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": null
+      },
+      {
+        "subject": "Track Issues",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": null
+      },
+      {
+        "subject": "Create Blackboard",
+        "status": "10841827",
+        "assigned_to": null,
+        "points": 40
+      },
+      {
+        "subject": "Loading Existing TAIGA Information",
+        "status": "10841823",
+        "assigned_to": 925139,
+        "points": 40
+      },
+      {
+        "subject": "SCRUM Progress Bar",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": null
+      },
+      {
+        "subject": "Project Dashboard",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": null
+      },
+      {
+        "subject": "Assigning Values to Stories",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": null
+      },
+      {
+        "subject": "Kanban Project User Story Tabs",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": null
+      },
+      {
+        "subject": "User Profile Customization",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": null
+      },
+      {
+        "subject": "Events/Notifications Tab",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": 5
+      },
+      {
+        "subject": "Sprint Backlog Filter",
+        "status": "10841823",
+        "assigned_to": null,
+        "points": 4
+      }
+    ],
+    "project_id": 1787003,
+    "members": [
+      {
+        "full_name": "Anthony Soto",
+        "username": ""
+      },
+      {
+        "full_name": "Ivan Torriani",
+        "username": ""
+      },
+      {
+        "full_name": "Matthew Wiecking",
+        "username": ""
+      },
+      {
+        "full_name": "Nicolas Yenikomshian",
+        "username": ""
+      },
+      {
+        "full_name": "",
+        "username": ""
+      }
+    ],
+    "sprints": [
+      {
+        "name": "Sprint 3",
+        "estimated_finish": "2026-05-22",
+        "estimated_start": "2026-05-18"
+      },
+      {
+        "name": "Sprint 2",
+        "estimated_finish": "2026-05-06",
+        "estimated_start": "2026-04-29"
+      },
+      {
+        "name": "sprint1",
+        "estimated_finish": "2026-04-29",
+        "estimated_start": "2026-04-22"
+      }
+    ],
+    "project_name": "Taiga Desktop",
+    "tasks": [
+      {
+        "subject": "Make registration UI",
+        "assigned_to": null
+      },
+      {
+        "subject": "Implement form validation",
+        "assigned_to": null
+      },
+      {
+        "subject": "Create backend endpoint for registration",
+        "assigned_to": null
+      },
+      {
+        "subject": "Implement password hashing",
+        "assigned_to": null
+      },
+      {
+        "subject": "Add database for users",
+        "assigned_to": null
+      },
+      {
+        "subject": "Design login UI and frontend validation for login inputs",
+        "assigned_to": null
+      },
+      {
+        "subject": "Create backend authentication endpoints and session handling",
+        "assigned_to": null
+      },
+      {
+        "subject": "Redirect user to dashboard on success",
+        "assigned_to": null
+      },
+      {
+        "subject": "Add login security (rate limiting, password protection)",
+        "assigned_to": null
+      },
+      {
+        "subject": "Create endpoint for password reset",
+        "assigned_to": null
+      },
+      {
+        "subject": "Send reset email with link and generate a reset token",
+        "assigned_to": null
+      },
+      {
+        "subject": "Create 'Reset Password' page UI",
+        "assigned_to": null
+      },
+      {
+        "subject": "Update to the new password in the database",
+        "assigned_to": null
+      },
+      {
+        "subject": "Design 'Forgot Password' UI",
+        "assigned_to": null
+      },
+      {
+        "subject": "Add logout button to UI",
+        "assigned_to": null
+      },
+      {
+        "subject": "Implement a logout/clear session function",
+        "assigned_to": null
+      },
+      {
+        "subject": "Redirect the user to the login page",
+        "assigned_to": null
+      },
+      {
+        "subject": "Create Main App GUI",
+        "assigned_to": 925141
+      },
+      {
+        "subject": "Create backend endpoint for project creation",
+        "assigned_to": 925146
+      },
+      {
+        "subject": "Link Observer Functionality",
+        "assigned_to": 925141
+      },
+      {
+        "subject": "Add Delete Project button in UI",
+        "assigned_to": null
+      },
+      {
+        "subject": "Implement confirmation",
+        "assigned_to": null
+      },
+      {
+        "subject": "Create backend delete endpoint",
+        "assigned_to": null
+      },
+      {
+        "subject": "Verify user is project owner",
+        "assigned_to": null
+      },
+      {
+        "subject": "Remove project from database",
+        "assigned_to": null
+      },
+      {
+        "subject": "Design invite user UI",
+        "assigned_to": null
+      },
+      {
+        "subject": "Create backend invite endpoint",
+        "assigned_to": null
+      },
+      {
+        "subject": "Generate invitation record/token",
+        "assigned_to": null
+      },
+      {
+        "subject": "Create accept/decline invitation flow",
+        "assigned_to": null
+      },
+      {
+        "subject": "Define project models and database relationships",
+        "assigned_to": null
+      }
+    ]
+  },
+  {
+    "stories": [{
+      "subject": "Test Story",
+      "status": "10824924",
+      "assigned_to": null,
+      "points": 40
+    }],
+    "project_id": 1784249,
+    "members": [{
+      "full_name": "Ivan Torriani",
+      "username": ""
+    }],
+    "sprints": [{
+      "name": "test",
+      "estimated_finish": "2026-04-24",
+      "estimated_start": "2026-04-10"
+    }],
+    "project_name": "test",
+    "tasks": []
+  }
+]

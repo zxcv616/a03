@@ -1,6 +1,12 @@
 package com.yourteam.taiga;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import java.awt.GridLayout;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.nio.file.Files;
@@ -32,10 +38,25 @@ public class TaigaLoader {
 
         btn.addActionListener(e -> {
             try {
-                // scrape fresh data from Taiga
-                TaigaClient client = new TaigaClient("https://api.taiga.io"); //instnaitate the taiga client for scraping
+                // prompt for Taiga credentials
+                JTextField userField = new JTextField();
+                JPasswordField passField = new JPasswordField();
+                JPanel credPanel = new JPanel(new GridLayout(0, 1, 5, 5));
+                credPanel.add(new JLabel("Taiga Username / Email:"));
+                credPanel.add(userField);
+                credPanel.add(new JLabel("Password:"));
+                credPanel.add(passField);
 
-                String cleanedFile = client.scrape("itorrian@calpoly.edu", "Ilikecamels1!"); //use my credentials for now
+                int result = JOptionPane.showConfirmDialog(null, credPanel,
+                    "Connect to Taiga", JOptionPane.OK_CANCEL_OPTION);
+                if (result != JOptionPane.OK_OPTION) return;
+
+                String username = userField.getText().trim();
+                String password = new String(passField.getPassword());
+
+                // scrape fresh data from Taiga
+                TaigaClient client = new TaigaClient("https://api.taiga.io");
+                String cleanedFile = client.scrape(username, password);
 
                 // load the cleaned output into the local app
                 translateTaiga(cleanedFile);
